@@ -20,7 +20,7 @@ const state: State = {
 }
 
 function format(text: string): string {
-  return text.replace(/\r?\n/g, ' ');
+  return text.replace(/\r\n|\n|\r/g, ' ');
 }
 
 const actions : ActionsType<State, Actions> = {
