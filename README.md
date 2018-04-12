@@ -1,4 +1,4 @@
-# Instranslation
+# Instantranslate
 
 Translating the text of the clipboard.
 
