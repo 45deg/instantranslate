@@ -19,8 +19,8 @@ const state: State = {
   waiting: false,
 }
 
-function beautify(text: string): string {
-  return text.replace(/\n/g, ' ');
+function format(text: string): string {
+  return text.replace(/\r?\n/g, ' ');
 }
 
 const actions : ActionsType<State, Actions> = {
@@ -28,7 +28,7 @@ const actions : ActionsType<State, Actions> = {
     let cb = clipboard.readText()
     if(cb !== $state.clipboard && !$state.waiting) {
       ipcRenderer.send("translate",JSON.stringify({
-        text: beautify(cb),
+        text: format(cb),
         to: "ja"
       }))
       return { ...$state, waiting: true, clipboard: cb }
