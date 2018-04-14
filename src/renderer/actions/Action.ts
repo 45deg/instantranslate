@@ -13,21 +13,19 @@ export const actions : ActionsType<State, Actions> = {
     let cb = clipboard.readText()
     if(cb !== $state.clipboard && !$state.waiting && $state.enabled) {
       ipcRenderer.send("translate",JSON.stringify({
-        text: cb.replace(/\r\n|\n|\r/g, ' '),
+        text: $state.config.ignoreLineBreak ? cb.replace(/\r\n|\n|\r/g, ' ') : cb,
         to: "ja"
       }))
-      return { ...$state, waiting: true, clipboard: cb }
+      return { waiting: true, clipboard: cb }
     } else {
       return $state
     }
   },
   receive: text => $state => ({
-    ...$state,
     waiting: false,
     translated: text
   }),
   toggleWatch: () => $state => ({
-    ...$state,
     enabled: !$state.enabled
   })
 }

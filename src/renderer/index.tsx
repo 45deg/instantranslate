@@ -2,7 +2,7 @@
 import { app } from "hyperapp"
 import { ipcRenderer } from "electron"
 
-import { State } from "./states/State"
+import { state } from "./states/State"
 import { actions } from "./actions/Action"
 import { Root } from "./views/Root"
 
@@ -14,7 +14,7 @@ import 'xel/images/icons.svg'
 // style
 import './style.css'
 
-const main = app(new State, actions, Root, document.getElementById("app"))
+const main = app(state, actions, Root, document.getElementById("app"))
 
 // watch
 setInterval(main.clipboardChange, 1000, 1) 

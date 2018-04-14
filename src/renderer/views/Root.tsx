@@ -6,7 +6,9 @@ import { Actions } from "../actions/Action"
 export const Root: View<State, Actions> = (state, actions) => (
   <div>
     <x-card><main>
-      <p>{ state.waiting ? <x-throbber></x-throbber> : state.translated }</p>
+      <p style={{ fontSize: state.config.fontSize + 'px' }}>
+        { state.waiting ? <x-throbber></x-throbber> : state.translated }
+      </p>
     </main></x-card>
     <div class="btn-control">
       <x-button skin="iconic" onclick={actions.toggleWatch}>
