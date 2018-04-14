@@ -12,4 +12,7 @@ export const defaultConfig: Config = {
   targetLanguage : "ja"
 }
 
-export const config = defaultConfig
+const ls = localStorage.getItem("settings")
+export const config: Config = ls !== null ?
+  JSON.parse(ls) :
+  defaultConfig
