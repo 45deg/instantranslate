@@ -1,57 +1,30 @@
 // Initial welcome page. Delete the following line to remove it.
-import { h, app, View, ActionsType } from "hyperapp"
-import { clipboard, ipcRenderer } from "electron"
+import { app } from "hyperapp"
+import { remote, ipcRenderer } from "electron"
 
-interface State {
-  clipboard: string,
-  translated: string,
-  waiting: boolean
-}
+import { state } from "./states/State"
+import { actions } from "./actions/Action"
+import { Root } from "./views/Root"
 
-interface Actions {
-  clipboardChange(text : string): void,
-  receive(text : string): State,
-}
+// xel framework 
+import * as ResizeObserver from 'xel/xel.min'
+import 'xel/stylesheets/material.theme.css'
+import 'xel/images/icons.svg'
+// dirty workaround :P
+(window as any).ResizeObserver = ResizeObserver;
 
-const state: State = {
-  clipboard: "",
-  translated: "",
-  waiting: false,
-}
+// style
+import './style.css'
 
-function format(text: string): string {
-  return text.replace(/\r\n|\n|\r/g, ' ');
-}
 
-const actions : ActionsType<State, Actions> = {
-  clipboardChange: text => ($state, $actions) => {
-    let cb = clipboard.readText()
-    if(cb !== $state.clipboard && !$state.waiting) {
-      ipcRenderer.send("translate",JSON.stringify({
-        text: format(cb),
-        to: "ja"
-      }))
-      return { ...$state, waiting: true, clipboard: cb }
-    } else {
-      return $state
-    }
-  },
-  receive: text => $state => ({
-    ...$state,
-    waiting: false,
-    translated: text
-  })
-}
+const main = app(state, actions, Root, document.getElementById("app"))
 
-const view: View<State, Actions> = (state, actions) => (
-  <div>
-  <p>{ state.waiting ? '...' : state.translated }</p>
-  </div>
-)
-
-const main = app(state, actions, view, document.getElementById("app"))
-
+// watch clipboard
 setInterval(main.clipboardChange, 1000, 1) 
 ipcRenderer.on("translate-result", (event : any, args : any) => {
-  main.receive(args);
+  main.receive(args)
 })
+
+// init config
+remote.getCurrentWindow().setAlwaysOnTop(state.config.alwaysOnTop)
+remote.getCurrentWindow().setOpacity(state.config.windowOpacity)

@@ -1,0 +1,53 @@
+body {
+  padding-top: 15px;
+  -webkit-app-region: drag;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body, #app, #app > div {
+  height: 100%;
+}
+
+#app > div {
+  padding: 10px;
+}
+
+x-card {
+  margin: 0px;
+  height: 100%;
+  box-sizing:border-box;
+  width: auto;
+  -webkit-app-region: no-drag;
+}
+
+.btn-control {
+  position: fixed;
+  left: 20px;
+  bottom: 20px;
+}
+
+.btn-config {
+  position: fixed;
+  right: 20px;
+  bottom: 20px;
+}
+
+h1 { 
+  margin-top: 0;
+}
+
+x-label + x-select, x-label + x-numberinput, x-label + x-slider, x-slider + x-label {
+  margin-left: 1ex;
+}
+
+x-slider {
+  width: 150px;
+}
+
+x-card main > p {
+  line-height: 1.2;
+  white-space: pre-wrap;
+}

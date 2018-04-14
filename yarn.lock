@@ -8172,6 +8172,10 @@ xdg-basedir@^3.0.0:
   version "3.0.0"
   resolved "https://registry.yarnpkg.com/xdg-basedir/-/xdg-basedir-3.0.0.tgz#496b2cc109eca8dbacfe2dc72b603c17c5870ad4"
 
+xel@^0.0.130:
+  version "0.0.130"
+  resolved "https://registry.yarnpkg.com/xel/-/xel-0.0.130.tgz#fdf6bf355284b04531edc3ce556dd6fa871c34e9"
+
 xmlbuilder@8.2.2:
   version "8.2.2"
   resolved "https://registry.yarnpkg.com/xmlbuilder/-/xmlbuilder-8.2.2.tgz#69248673410b4ba42e1a6136551d2922335aa773"

@@ -11,7 +11,8 @@
   "dependencies": {
     "google-translate-api": "^2.3.0",
     "hyperapp": "^1.2.5",
-    "source-map-support": "^0.5.4"
+    "source-map-support": "^0.5.4",
+    "xel": "^0.0.130"
   },
   "devDependencies": {
     "electron": "1.8.4",
