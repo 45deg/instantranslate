@@ -41,6 +41,9 @@ export const actions : ActionsType<State, Actions> = {
     if(update.alwaysOnTop !== undefined) {
       remote.getCurrentWindow().setAlwaysOnTop(update.alwaysOnTop)
     }
+    if(update.windowOpacity !== undefined) {
+      remote.getCurrentWindow().setOpacity(update.windowOpacity)
+    }
     if(update.targetLanguage !== undefined || update.ignoreLineBreak !== undefined) {
       needReload = true
     }

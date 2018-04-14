@@ -3,16 +3,18 @@ export interface Config {
   alwaysOnTop: boolean
   ignoreLineBreak: boolean
   targetLanguage: string
+  windowOpacity: number
 }
 
 export const defaultConfig: Config = {
   fontSize : 18,
   alwaysOnTop : false,
   ignoreLineBreak : true,
-  targetLanguage : "ja"
+  targetLanguage : "ja",
+  windowOpacity: 1
 }
 
 const ls = localStorage.getItem("settings")
 export const config: Config = ls !== null ?
-  JSON.parse(ls) :
+  { ...defaultConfig, ...JSON.parse(ls) } :
   defaultConfig

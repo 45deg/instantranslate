@@ -39,8 +39,12 @@ h1 {
   margin-top: 0;
 }
 
-x-label + x-select, x-label + x-numberinput {
+x-label + x-select, x-label + x-numberinput, x-label + x-slider, x-slider + x-label {
   margin-left: 1ex;
+}
+
+x-slider {
+  width: 150px;
 }
 
 x-card main > p {

@@ -43,5 +43,13 @@ export const Config: Component<{}, State, Actions> = () => (state, actions) => (
         <x-label for="ignorelb"> Ignore line breaks</x-label>
       </x-box>
     </p>
+    <p>
+      <x-box>
+        <x-label>Window opacity: </x-label>
+        <x-slider min="0" max="1" step="0.01" value={state.config.windowOpacity}
+          onchangeend={e => actions.updateSetting({ windowOpacity: e.target.value })}></x-slider>
+        <x-label> {state.config.windowOpacity}</x-label>
+      </x-box>
+    </p>
   </div>
 )

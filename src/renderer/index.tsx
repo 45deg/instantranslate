@@ -22,8 +22,9 @@ const main = app(state, actions, Root, document.getElementById("app"))
 // watch clipboard
 setInterval(main.clipboardChange, 1000, 1) 
 ipcRenderer.on("translate-result", (event : any, args : any) => {
-  main.receive(args);
+  main.receive(args)
 })
 
-// alwaysOnTop
-remote.getCurrentWindow().setAlwaysOnTop(state.config.alwaysOnTop);
+// init config
+remote.getCurrentWindow().setAlwaysOnTop(state.config.alwaysOnTop)
+remote.getCurrentWindow().setOpacity(state.config.windowOpacity)
