@@ -14,7 +14,7 @@ export const actions : ActionsType<State, Actions> = {
     if(cb !== $state.clipboard && !$state.waiting && $state.enabled) {
       ipcRenderer.send("translate",JSON.stringify({
         text: $state.config.ignoreLineBreak ? cb.replace(/\r\n|\n|\r/g, ' ') : cb,
-        to: "ja"
+        to: $state.config.targetLanguage
       }))
       return { waiting: true, clipboard: cb }
     } else {
