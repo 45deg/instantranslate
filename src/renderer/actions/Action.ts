@@ -49,6 +49,6 @@ export const actions : ActionsType<State, Actions> = {
     }
     let updatedConfig = { ...$state.config, ...update }
     localStorage.setItem('settings', JSON.stringify(updatedConfig))
-    return { ...$state, needReload, config: updatedConfig }
+    return { needReload, config: updatedConfig }
   }
 }
