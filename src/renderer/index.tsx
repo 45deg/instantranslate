@@ -2,8 +2,12 @@
 import { h, app, View, ActionsType } from "hyperapp"
 import { clipboard, ipcRenderer } from "electron"
 
+// xel framework 
 import 'xel/xel.min'
 import 'xel/stylesheets/material.theme.css'
+import 'xel/images/icons.svg'
+
+// style
 import './style.css'
 
 interface State {
@@ -49,9 +53,19 @@ const actions : ActionsType<State, Actions> = {
 
 const view: View<State, Actions> = (state, actions) => (
   <div>
-    <x-card style={{margin: '10px'}}><main>
-      <p>{ state.waiting ? '...' : state.translated }</p>
+    <x-card><main>
+      <p>{ state.waiting ? <x-throbber></x-throbber> : state.translated }</p>
     </main></x-card>
+    <div class="btn-control">
+      <x-button skin="iconic">
+        <x-icon name="pause" iconset="./imgs/icons--images.svg"></x-icon>
+      </x-button>
+    </div>
+    <div class="btn-config">
+      <x-button skin="iconic">
+        <x-icon name="settings" iconset="./imgs/icons--images.svg"></x-icon>
+      </x-button>
+    </div>
   </div>
 )
 
