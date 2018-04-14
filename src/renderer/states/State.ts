@@ -5,6 +5,7 @@ export interface State {
   translated: string
   waiting: boolean
   enabled: boolean
+  showConfig: boolean
   config: Config
 }
 
@@ -13,5 +14,6 @@ export const state: State = {
   translated : "",
   waiting : false,
   enabled : true,
+  showConfig: false,
   config : config
 }

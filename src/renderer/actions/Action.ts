@@ -3,9 +3,10 @@ import { clipboard, ipcRenderer } from "electron"
 import { State } from "../states/State"
 
 export interface Actions {
-  clipboardChange(text : string): void,
-  receive(text : string): State,
-  toggleWatch() : State,
+  clipboardChange(text : string): void
+  receive(text : string): State
+  toggleWatch() : State
+  toggleConfig() : State
 }
 
 export const actions : ActionsType<State, Actions> = {
@@ -27,5 +28,8 @@ export const actions : ActionsType<State, Actions> = {
   }),
   toggleWatch: () => $state => ({
     enabled: !$state.enabled
+  }),
+  toggleConfig: () => $state => ({
+    showConfig: !$state.showConfig
   })
 }

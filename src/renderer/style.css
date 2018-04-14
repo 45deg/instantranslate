@@ -34,3 +34,11 @@ x-card {
   right: 20px;
   bottom: 20px;
 }
+
+h1 { 
+  margin-top: 0;
+}
+
+x-label + x-select, x-label + x-numberinput {
+  margin-left: 1ex;
+}
