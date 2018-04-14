@@ -9,7 +9,7 @@ export const Root: View<State, Actions> = (state, actions) => (
     <x-card>
       <main> { 
         state.showConfig ? <Config /> :
-        <p style={{ fontSize: state.config.fontSize + 'px' }}>
+        <p style={{ fontSize: state.config.fontSize + 'px', opacity: state.enabled ? 1 : 0.7 }}>
           { state.waiting ? <x-throbber></x-throbber> : state.translated }
         </p>
       }</main>
