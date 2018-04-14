@@ -13,18 +13,21 @@ import './style.css'
 interface State {
   clipboard: string,
   translated: string,
-  waiting: boolean
+  waiting: boolean,
+  enabled: boolean,
 }
 
 interface Actions {
   clipboardChange(text : string): void,
   receive(text : string): State,
+  toggleWatch() : State,
 }
 
 const state: State = {
   clipboard: "",
   translated: "",
   waiting: false,
+  enabled: true,
 }
 
 function format(text: string): string {
@@ -34,7 +37,7 @@ function format(text: string): string {
 const actions : ActionsType<State, Actions> = {
   clipboardChange: text => ($state, $actions) => {
     let cb = clipboard.readText()
-    if(cb !== $state.clipboard && !$state.waiting) {
+    if(cb !== $state.clipboard && !$state.waiting && $state.enabled) {
       ipcRenderer.send("translate",JSON.stringify({
         text: format(cb),
         to: "ja"
@@ -48,6 +51,10 @@ const actions : ActionsType<State, Actions> = {
     ...$state,
     waiting: false,
     translated: text
+  }),
+  toggleWatch: () => $state => ({
+    ...$state,
+    enabled: !$state.enabled
   })
 }
 
@@ -57,8 +64,9 @@ const view: View<State, Actions> = (state, actions) => (
       <p>{ state.waiting ? <x-throbber></x-throbber> : state.translated }</p>
     </main></x-card>
     <div class="btn-control">
-      <x-button skin="iconic">
-        <x-icon name="pause" iconset="./imgs/icons--images.svg"></x-icon>
+      <x-button skin="iconic" onclick={actions.toggleWatch}>
+        <x-icon name={ state.enabled ? "pause" : "play-arrow" } iconset="./imgs/icons--images.svg">
+        </x-icon>
       </x-button>
     </div>
     <div class="btn-config">
