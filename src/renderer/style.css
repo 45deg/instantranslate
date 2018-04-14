@@ -42,3 +42,8 @@ h1 {
 x-label + x-select, x-label + x-numberinput {
   margin-left: 1ex;
 }
+
+x-card main > p {
+  line-height: 1.2;
+  white-space: pre-wrap;
+}
