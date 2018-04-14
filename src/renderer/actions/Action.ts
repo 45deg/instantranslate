@@ -15,12 +15,12 @@ export interface Actions {
 export const actions : ActionsType<State, Actions> = {
   clipboardChange: text => ($state, $actions) => {
     let cb = clipboard.readText()
-    if(cb !== $state.clipboard && !$state.waiting && $state.enabled) {
+    if((cb !== $state.clipboard || $state.needReload) && !$state.waiting && $state.enabled) {
       ipcRenderer.send("translate",JSON.stringify({
         text: $state.config.ignoreLineBreak ? cb.replace(/\r\n|\n|\r/g, ' ') : cb,
         to: $state.config.targetLanguage
       }))
-      return { waiting: true, clipboard: cb }
+      return { waiting: true, clipboard: cb, needReload: false }
     } else {
       return $state
     }
@@ -37,11 +37,15 @@ export const actions : ActionsType<State, Actions> = {
   }),
   updateSetting: (update : Partial<Config>) => $state => {
     //console.log({ ...$state, config: { ...$state.config, d} })
-    if('alwaysOnTop' in update) {
+    let needReload = false
+    if(update.alwaysOnTop !== undefined) {
       remote.getCurrentWindow().setAlwaysOnTop(update.alwaysOnTop)
+    }
+    if(update.targetLanguage !== undefined || update.ignoreLineBreak !== undefined) {
+      needReload = true
     }
     let updatedConfig = { ...$state.config, ...update }
     localStorage.setItem('settings', JSON.stringify(updatedConfig))
-    return { ...$state, config: updatedConfig }
+    return { ...$state, needReload, config: updatedConfig }
   }
 }

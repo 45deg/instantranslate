@@ -6,6 +6,7 @@ export interface State {
   waiting: boolean
   enabled: boolean
   showConfig: boolean
+  needReload: boolean
   config: Config
 }
 
@@ -15,5 +16,6 @@ export const state: State = {
   waiting : false,
   enabled : true,
   showConfig: false,
+  needReload: false,
   config : config
 }
