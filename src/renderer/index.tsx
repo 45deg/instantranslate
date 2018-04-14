@@ -2,6 +2,10 @@
 import { h, app, View, ActionsType } from "hyperapp"
 import { clipboard, ipcRenderer } from "electron"
 
+import 'xel/xel.min'
+import 'xel/stylesheets/material.theme.css'
+import './style.css'
+
 interface State {
   clipboard: string,
   translated: string,
@@ -45,7 +49,9 @@ const actions : ActionsType<State, Actions> = {
 
 const view: View<State, Actions> = (state, actions) => (
   <div>
-  <p>{ state.waiting ? '...' : state.translated }</p>
+    <x-card style={{margin: '10px'}}><main>
+      <p>{ state.waiting ? '...' : state.translated }</p>
+    </main></x-card>
   </div>
 )
 

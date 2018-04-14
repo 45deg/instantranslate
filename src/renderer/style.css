@@ -1,0 +1,9 @@
+body {
+  padding-top: 15px;
+  -webkit-app-region: drag;
+}
+
+x-card {
+  margin: 10px;
+  width: auto;
+}
