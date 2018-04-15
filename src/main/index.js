@@ -10,7 +10,12 @@ const isDevelopment = process.env.NODE_ENV !== 'production'
 let mainWindow
 
 function createMainWindow() {
-  const window = new BrowserWindow({ title: "Instrantranslate" ,frame: false, titleBarStyle: 'hidden' })
+  const window = new BrowserWindow({ 
+    title: "Instrantranslate", 
+    width: isDevelopment ? 800 : 400,
+    height: 600,
+    frame: false,
+    titleBarStyle: 'hidden' })
 
   if (isDevelopment) {
     window.webContents.openDevTools()
