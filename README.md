@@ -2,8 +2,6 @@
 
 Translating the text of the clipboard.
 
-Work in Progress
-
 ## How to install
 
 Requirements: node, yarn
