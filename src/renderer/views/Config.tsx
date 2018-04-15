@@ -10,9 +10,9 @@ export const Config: Component<{}, State, Actions> = () => (state, actions) => (
     <p>
       <x-box>
         <x-label>Font size: </x-label>
-        <x-numberinput value={state.config.fontSize} suffix=" px" min="1" max="100"
-          onchangeend={e => actions.updateSetting({ fontSize: e.target.value })}>
-          <x-stepper disabled="decrement"></x-stepper>
+        <x-numberinput value={state.config.fontSize} suffix=" px" min={1} max={100}
+          onchange={e => actions.updateSetting({ fontSize: e.target.value }) }>
+          <x-stepper></x-stepper>
         </x-numberinput>
       </x-box>
     </p>
