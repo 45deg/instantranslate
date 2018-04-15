@@ -7,6 +7,7 @@ import { actions } from "./actions/Action"
 import { Root } from "./views/Root"
 
 // xel framework 
+// @ts-ignore:7016
 import * as ResizeObserver from 'xel/xel.min'
 import 'xel/stylesheets/material.theme.css'
 import 'xel/images/icons.svg'
