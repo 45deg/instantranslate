@@ -64,6 +64,8 @@ app.on('ready', () => {
 export const translate = require('./translate').default;
 ipcMain.on('translate', (event, arg) => {
   translate(JSON.parse(arg)).then(res => {
-    event.sender.send('translate-result', res)
+    event.sender.send('translate-result', JSON.stringify({ ok: true, result: res }))
+  }).catch(e => {
+    event.sender.send('translate-result', JSON.stringify({ ok: false, error: e.code }))
   });
 })

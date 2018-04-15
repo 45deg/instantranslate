@@ -4,6 +4,7 @@ export interface State {
   clipboard: string
   translated: string
   waiting: boolean
+  error: string | null
   enabled: boolean
   showConfig: boolean
   needReload: boolean
@@ -14,6 +15,7 @@ export const state: State = {
   clipboard : "",
   translated : "",
   waiting : false,
+  error : null,
   enabled : true,
   showConfig: false,
   needReload: false,

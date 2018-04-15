@@ -1,4 +1,4 @@
-import { remote } from "electron"
+import { remote, Result } from "electron"
 import { ActionsType } from "hyperapp"
 import { clipboard, ipcRenderer } from "electron"
 import { State } from "../states/State"
@@ -6,11 +6,22 @@ import { Config } from "../states/Config"
 
 export interface Actions {
   clipboardChange(text : string): void
-  receive(text : string): State
+  receive(text : TranslationResult): State
   toggleWatch() : State
   toggleConfig() : State
   updateSetting(data: Partial<Config>) : State
 }
+
+interface TranslationResultSuccess {
+  ok: true
+  result: Result
+}
+interface TranslationResultFailed {
+  ok: false
+  error: Result
+}
+export type TranslationResult = 
+  TranslationResultSuccess | TranslationResultFailed
 
 export const actions : ActionsType<State, Actions> = {
   clipboardChange: text => ($state, $actions) => {
@@ -25,10 +36,15 @@ export const actions : ActionsType<State, Actions> = {
       return $state
     }
   },
-  receive: text => $state => ({
-    waiting: false,
-    translated: text
-  }),
+  receive: result => $state => 
+    console.log(result) || (result.ok ? {
+      waiting: false,
+      translated: result.result,
+      error: null
+    } : {
+      waiting: false,
+      error: result.error,
+    }),
   toggleWatch: () => $state => ({
     enabled: !$state.enabled
   }),

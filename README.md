@@ -16,6 +16,6 @@ yarn dev # start
 ## TODO
 
 - [ ] Design Improvement
-- [ ] Handling errors
+- [x] ~~Handling errors~~
 - [x] ~~Target Language~~
 - [ ] History

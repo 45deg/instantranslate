@@ -22,7 +22,7 @@ const main = app(state, actions, Root, document.getElementById("app"))
 // watch clipboard
 setInterval(main.clipboardChange, 1000, 1) 
 ipcRenderer.on("translate-result", (event : any, args : any) => {
-  main.receive(args)
+  main.receive(JSON.parse(args))
 })
 
 // init config

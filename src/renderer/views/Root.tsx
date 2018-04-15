@@ -9,8 +9,12 @@ export const Root: View<State, Actions> = (state, actions) => (
     <x-card>
       <main> { 
         state.showConfig ? <Config /> :
+        state.waiting ? <x-throbber></x-throbber> : 
         <p style={{ fontSize: state.config.fontSize + 'px', opacity: state.enabled ? 1 : 0.7 }}>
-          { state.waiting ? <x-throbber></x-throbber> : state.translated }
+          { 
+            state.error !== null ? <span class="error">Error: {state.error}</span> : 
+            state.translated 
+          }
         </p>
       }</main>
     </x-card>

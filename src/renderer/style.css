@@ -51,3 +51,7 @@ x-card main > p {
   line-height: 1.2;
   white-space: pre-wrap;
 }
+
+.error {
+  color:red;
+}
