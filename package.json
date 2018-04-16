@@ -22,6 +22,15 @@
     "typescript": "^2.8.1",
     "webpack": "^4.4.1"
   },
+  "build" : {
+    "win": { 
+      "target" : [
+        {
+          "target": "zip"
+        }
+      ]
+    }
+  },
   "resolutions": {
     "webpack-sources": "1.0.1"
   }
