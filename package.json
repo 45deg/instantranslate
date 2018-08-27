@@ -15,7 +15,7 @@
     "xel": "^0.0.130"
   },
   "devDependencies": {
-    "electron": "1.8.4",
+    "electron": "^1.8.8",
     "electron-builder": "^20.8.1",
     "electron-webpack": "^2.0.1",
     "electron-webpack-ts": "^2.0.0",
